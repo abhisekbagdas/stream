@@ -1,0 +1,169 @@
+/* Additional Custom Styles */
+
+/* Smooth transitions */
+* {
+    transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 150ms;
+}
+
+/* Custom scrollbar for webkit */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #1e293b;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #475569;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #64748b;
+}
+
+/* Loading animation */
+.loading-pulse {
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: .5;
+    }
+}
+
+/* Video mirror effect for local video */
+#localVideo {
+    transform: scaleX(-1);
+}
+
+/* Hover effects */
+.hover-lift:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+}
+
+/* Glass effect variations */
+.glass-dark {
+    background: rgba(15, 23, 42, 0.8);
+    backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Input focus effects */
+input:focus, button:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.3);
+}
+
+/* Button press effect */
+button:active {
+    transform: scale(0.95);
+}
+
+/* Stream container focus */
+.video-container:focus-within {
+    box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.5);
+}
+
+/* Chat bubble animations */
+.chat-message {
+    transition: all 0.3s ease;
+}
+
+.chat-message:hover {
+    transform: translateX(2px);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .video-grid {
+        grid-template-columns: repeat(2, 1fr);
+        max-height: 150px;
+    }
+    
+    .video-container {
+        padding-bottom: 75%; /* 4:3 aspect ratio on mobile */
+    }
+}
+
+/* Fullscreen styles */
+:fullscreen .video-container {
+    width: 100vw;
+    height: 100vh;
+    padding-bottom: 0;
+    border-radius: 0;
+}
+
+:fullscreen iframe {
+    width: 100vw;
+    height: 100vh;
+}
+
+/* Audio level indicator */
+.audio-bar {
+    display: flex;
+    align-items: flex-end;
+    gap: 2px;
+    height: 20px;
+}
+
+.audio-bar span {
+    width: 3px;
+    background: #10b981;
+    border-radius: 2px;
+    animation: sound 0.5s ease-in-out infinite alternate;
+}
+
+@keyframes sound {
+    0% { height: 20%; }
+    100% { height: 100%; }
+}
+
+/* Connection status */
+.status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 6px;
+}
+
+.status-online { background: #10b981; }
+.status-connecting { background: #f59e0b; animation: pulse 1s infinite; }
+.status-offline { background: #ef4444; }
+
+/* Tooltip styles */
+[data-tooltip] {
+    position: relative;
+}
+
+[data-tooltip]:after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 4px 8px;
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    font-size: 12px;
+    border-radius: 4px;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s;
+    margin-bottom: 6px;
+}
+
+[data-tooltip]:hover:after {
+    opacity: 1;
+}
